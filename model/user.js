@@ -19,8 +19,26 @@ exports.add = function(conData, req, callback){
 		  email: req.body['email'],
 		  forename: req.body['forename'],
 		  surname: req.body['surname'],
-		  created: req.body['created'],
-		};
+		  created: new Date(),
+        };
+        
+        //validate input
+        if(user.email.length > 32){
+            callback({message:"email cannot be longer than 32 characters"});
+            return;
+        }
+           
+        if(user.forename.length > 16){
+            callback({message:"email cannot be longer than 16 characters"});
+            return;
+        }
+            
+        if(user.surname.length > 16){
+            callback({message:"email cannot be longer than 16 characters"});
+            return;
+        }
+            
+            
 		//perform the query
 		data.query('INSERT INTO users SET ?', user, function (err, result) {
 			//return control to the calling module
@@ -176,9 +194,7 @@ exports.updateById = function(conData, req, callback){
 				var user = {
 				  email: req.body['email'],
 				  forename: req.body['forename'],
-				  surname: req.body['surname'],
-				  created: req.body['created'],
-				 
+				  surname: req.body['surname']				 
 				};
 				//perform the query
 				data.query('UPDATE users SET ? WHERE id = ' + req.params.id, user, function (err, result) {

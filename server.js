@@ -34,7 +34,7 @@ const databaseData = {
 	host:"localhost",
 	user:"root",
 	password: "",
-	database: "myBlog"
+	database: "test-api"
 };
 //save server port on global variable
 var port = 8080;
@@ -52,7 +52,6 @@ var port = 8080;
  * @apiParam {String} email the email address of the user
  * @apiParam {String} forename first name of the user
  * @apiParam {String} surname last name of the user
- * @apiParam {DateTime} created timestamp when this user is created
  * @apiSuccess {Object} response top-level object
  * @apiSuccess {String} response.message a message conforming addign is success
  * @apiParamExample {json} Request Body
@@ -60,7 +59,6 @@ var port = 8080;
  *      "email": "awad@talaween.net",
  *      "forename":"Mahmoud",
  *      "surname":"Awad",
- *      "created":"2018-06-27T18:25:43.511Z"
  *   }
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -90,7 +88,7 @@ server.post('/users', (req, res) => {
 		
 		if(err){
 			res.status(400);
-			res.end("error:" + err);
+			res.end(JSON.stringify(err));
 			return;
 		}
 		//if no error let's set proper response code and have a party
@@ -126,7 +124,7 @@ server.get('/users', (req, res) => {
 		res.setHeader('accepts', 'GET')
 		if(err){
 			res.status(400);
-			res.end("error:" + err);
+			res.end(JSON.stringify(err));
 			return;
 		}
 		
@@ -164,7 +162,7 @@ server.get('/users/:id', (req, res) => {
 		
 		if(err){
 			res.status(400);
-			res.end("error:" + err);
+			res.end(JSON.stringify(err));
 			return;
 		}
 		res.status(200);
@@ -191,14 +189,17 @@ server.get('/users/:id', (req, res) => {
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "message": "user deleted successfully"
- *      }
+ *       "fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,
+ *       "message":"","protocol41":true,"changedRows":0
+ *     }
+ *      
  * @apiError 422/Unprocessable-Entity user id was not found
  * @apiErrorExample {json} List error
  *    HTTP/1.1 422 Unprocessable Entity
  *    {
- *      "error": "user id was not found"
- *    }
+ *       "fieldCount":0,"affectedRows":0,"insertId":0,"serverStatus":2,"warningCount":0,
+ *       "message":"id was not found","protocol41":true,"changedRows":0
+ *     }
  */
 server.del('/users/:id',(req, res) => {
 	
@@ -206,10 +207,10 @@ server.del('/users/:id',(req, res) => {
 		
 		if(err){
 			res.status(400);
-			res.end("error:" + err);
+			res.end(JSON.stringify(err));
 			return;
 		}
-		res.status(201);
+		res.status(202);
 		res.end(data);
 	});
 
@@ -260,11 +261,11 @@ server.put('/users/:id', (req, res) => {
 
 		if(err){
 			res.status(400);
-			res.end("error:" + err);
+			res.end(JSON.stringify(err));
 			return;
 		}
 		
-		res.status(200);
+		res.status(202);
 		res.end("success");
 	});
 })
@@ -276,7 +277,7 @@ server.post('/createTables', (req, res) => {
 	db.createTables(databaseData, function(err, state){
 		if(err) {
 			res.status(400);
-			res.end("an error has occured:" + err);
+			res.end(JSON.stringify(err));
 			return;
 		}
 		res.status(200);
