@@ -27,7 +27,7 @@ exports.createTables = function (conData, callback){
 		  database: conData.database
 		});
 		
-	var sql = "CREATE TABLE Users (ID INT NOT NULL AUTO_INCREMENT, email VARCHAR(32), forename VARCHAR(16), surname VARCHAR(16), created DATETIME, PRIMARY KEY (ID))";
+	var sql = "CREATE TABLE users (ID INT NOT NULL AUTO_INCREMENT, email VARCHAR(32), forename VARCHAR(16), surname VARCHAR(16), created DATETIME, PRIMARY KEY (ID))";
 		
 	con.query(sql, function (err, result) {
 		//console.log("finish query:" + result);

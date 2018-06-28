@@ -10,8 +10,8 @@ const corsMiddleware = require('restify-cors-middleware')
 //add 'Authorization' to allowHeader to tell preflight browser OPTION request that basic auth is allowed
 const cors = corsMiddleware({
   preflightMaxAge: 5, //Optional
-  origins: ['http://localhost:3000'],
-  credentials: true,
+  origins: ['*'],
+  credentials: false,
   allowHeaders: ['API-Token', 'Authorization'],
   exposeHeaders: ['API-Token-Expiry'],
 
@@ -31,10 +31,10 @@ server.use(restify.plugins.authorizationParser())
 
 //prepare our database connection parameters
 const databaseData = { 
-	host:"http://talaween.net.mysql",
-	user:"talaween_net_test_api",
-	password: "t48t299!",
-	database: "talaween_net_test_api"
+	host:"sql2.freesqldatabase.com",
+	user:"sql2245082",
+	password: "tM3%eT4!",
+	database: "sql2245082"
 };
 //save server port on global variable
 var port = process.env.PORT || 8080;
