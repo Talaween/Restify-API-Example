@@ -31,7 +31,7 @@ server.use(restify.plugins.authorizationParser())
 
 //prepare our database connection parameters
 const databaseData = { 
-	host:"talaween.net.mysql",
+	host:"http://talaween.net.mysql",
 	user:"talaween_net_test_api",
 	password: "t48t299!",
 	database: "talaween_net_test_api"
