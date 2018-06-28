@@ -29,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/Talaween/Restify-API-Example/issues"
   },
-  "homepage": "https://github.com/Talaween/Restify-API-Example#readme"
+  "homepage": "https://github.com/Talaween/Restify-API-Example#readme",
+  "engines": {
+    "node": "8.11.3"
+  }
 }
