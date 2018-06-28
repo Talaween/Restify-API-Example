@@ -31,10 +31,10 @@ server.use(restify.plugins.authorizationParser())
 
 //prepare our database connection parameters
 const databaseData = { 
-	host:"localhost",
-	user:"root",
-	password: "",
-	database: "test-api"
+	host:"talaween.net.mysql",
+	user:"talaween_net_test_api",
+	password: "t48t299!",
+	database: "talaween_net_test_api"
 };
 //save server port on global variable
 var port = process.env.PORT || 8080;
