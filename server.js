@@ -37,7 +37,7 @@ const databaseData = {
 	database: "test-api"
 };
 //save server port on global variable
-var port = 8080;
+var port = 80;
 
 //------------Users Routes-----------------
 
